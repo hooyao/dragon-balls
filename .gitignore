@@ -21,3 +21,6 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+
+## Protobuf
+/generated/
