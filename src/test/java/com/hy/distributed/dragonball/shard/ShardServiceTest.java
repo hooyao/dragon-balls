@@ -9,7 +9,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 public class ShardServiceTest {
 
-    private static int TEST_DATA_SIZE = 1024*1024*10; //10MB
+    private static int TEST_DATA_SIZE = 1024 * 1024 * 10; //10MB
     private static int SHARD_COUNT = 15;
     private static int PARiTY_COUNT = 5;
 
@@ -40,11 +40,44 @@ public class ShardServiceTest {
     }
 
     @Test
-    public void shard_data_should_recover() {
+    public void shard_data_should_recover_with_all_sizes() {
         ShardService shardService = new ShardService();
         byte[][] shardedData = shardService.generateShards(rawTestData, SHARD_COUNT, PARiTY_COUNT);
         byte[] recoveredData = shardService.recoverFromShards(shardedData, SHARD_COUNT, rawTestData.length);
         assertArrayEquals(rawTestData, recoveredData);
+/*        int testCount = 20;
+        final int[] primes = this.findPrimeNumbers(testCount);
+        for (int i = 0; i < testCount; i++) {
+            byte[] testBytes = new byte[primes[i]];
+            new Random().nextBytes(testBytes);
+            byte[][] shardedData = shardService.generateShards(rawTestData, SHARD_COUNT, PARiTY_COUNT);
+            byte[] recoveredData = shardService.recoverFromShards(shardedData, SHARD_COUNT, rawTestData.length);
+            assertArrayEquals(rawTestData, recoveredData);
+        }*/
+
+    }
+
+    private int[] findPrimeNumbers(int count) {
+        int[] primes = new int[count];
+        int currentNum = 1;
+        int idx = 0;
+        while (idx < count) {
+            int temp;
+            boolean isPrime = true;
+            for (int j = 2; j <= currentNum / 2; j++) {
+                temp = currentNum % j;
+                if (temp == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                primes[idx] = currentNum;
+                idx++;
+            }
+            currentNum++;
+        }
+        return primes;
     }
 
 }
