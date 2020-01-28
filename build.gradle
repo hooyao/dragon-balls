@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.2.0.M3'
+        springBootVersion = '2.2.4.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -15,7 +15,7 @@ buildscript {
 
 
 plugins {
-    id 'org.springframework.boot' version '2.2.0.M3'
+    id 'org.springframework.boot' version '2.2.4.RELEASE'
     id 'java'
     id 'idea'
     //id 'io.spring.dependency-management'
@@ -46,9 +46,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.retry:spring-retry'
-    implementation 'com.google.protobuf:protobuf-java:3.8.0'
+    implementation 'com.google.protobuf:protobuf-java:3.11.1'
     //implementation 'com.googlecode.protobuf-java-format:protobuf-java-format'
-    implementation 'com.google.guava:guava:27.1-jre'
+    implementation 'com.google.guava:guava:28.2-jre'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
@@ -58,7 +58,7 @@ dependencies {
 protobuf {
     protoc {
         // Download from repositories
-        artifact = 'com.google.protobuf:protoc:3.8.0'
+        artifact = 'com.google.protobuf:protoc:3.11.1'
     }
     generatedFilesBaseDir = "$projectDir/generated/proto"
 }
