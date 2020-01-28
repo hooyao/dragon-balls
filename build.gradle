@@ -3,7 +3,7 @@ buildscript {
         springBootVersion = '2.2.4.RELEASE'
     }
     repositories {
-        mavenCentral()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -12,7 +12,6 @@ buildscript {
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.8'
     }
 }
-
 
 plugins {
     id 'org.springframework.boot' version '2.2.4.RELEASE'
@@ -36,9 +35,7 @@ sourceSets {
 }
 
 repositories {
-    mavenCentral()
-    maven { url 'https://repo.spring.io/snapshot' }
-    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
 }
 
 dependencies {
