@@ -1,0 +1,95 @@
+version: "3.7"
+services:
+  redis-master:
+    container_name: redis-master
+    image: redis:5-alpine
+    ports:
+      - "33100:6379"
+    networks:
+      - dragon-ball
+    deploy:
+      resources:
+        limits:
+          memory: 150M
+        reservations:
+          memory: 10M
+  redis-shard-0:
+    container_name: redis-shard-0
+    image: redis:5-alpine
+    ports:
+      - "33000:6379"
+    networks:
+      - dragon-ball
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+        reservations:
+          memory: 50M
+  redis-shard-1:
+    container_name: redis-shard-1
+    image: redis:5-alpine
+    ports:
+      - "33001:6379"
+    networks:
+      - dragon-ball
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+        reservations:
+          memory: 50M
+  redis-shard-2:
+    container_name: redis-shard-2
+    image: redis:5-alpine
+    ports:
+      - "33002:6379"
+    networks:
+      - dragon-ball
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+        reservations:
+          memory: 50M
+  redis-shard-3:
+    container_name: redis-shard-3
+    image: redis:5-alpine
+    ports:
+      - "33003:6379"
+    networks:
+      - dragon-ball
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+        reservations:
+          memory: 50M
+  redis-shard-4:
+    container_name: redis-shard-4
+    image: redis:5-alpine
+    ports:
+      - "33004:6379"
+    networks:
+      - dragon-ball
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+        reservations:
+          memory: 50M
+  redis-shard-5:
+    container_name: redis-shard-5
+    image: redis:5-alpine
+    ports:
+      - "33005:6379"
+    networks:
+      - dragon-ball
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+        reservations:
+          memory: 50M
+networks:
+  dragon-ball:

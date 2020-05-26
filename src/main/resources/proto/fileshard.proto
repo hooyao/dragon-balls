@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package hy.distributed.dragonball.serialization;
+
+message FileMeta {
+    string fileName = 1;
+    int32 shardCount = 2;
+    string redundancyRatio = 3;
+    repeated int32 shardHashList = 4;
+    repeated int32 redundancyHashList = 5;
+}

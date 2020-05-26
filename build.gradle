@@ -1,0 +1,71 @@
+buildscript {
+    ext {
+        springBootVersion = '2.2.0.M3'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.8'
+    }
+}
+
+
+plugins {
+    id 'org.springframework.boot' version '2.2.0.M3'
+    id 'java'
+    id 'idea'
+    //id 'io.spring.dependency-management'
+    id 'io.spring.dependency-management' version '1.0.7.RELEASE'
+    id 'com.google.protobuf' version "0.8.8"
+}
+
+group = 'com.hy.dragonball'
+version = '0.0.1'
+sourceCompatibility = '11'
+
+sourceSets {
+    main {
+        proto {
+            srcDir 'src/main/resources/proto'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/snapshot' }
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.retry:spring-retry'
+    implementation 'com.google.protobuf:protobuf-java:3.8.0'
+    //implementation 'com.googlecode.protobuf-java-format:protobuf-java-format'
+    implementation 'com.google.guava:guava:27.1-jre'
+    runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
+
+protobuf {
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:3.8.0'
+    }
+    generatedFilesBaseDir = "$projectDir/generated/proto"
+}
+
+idea {
+    module {
+        sourceDirs += file('${protobuf.generatedFilesBaseDir}/main/java')
+        sourceDirs += file('${protobuf.generatedFilesBaseDir}/test/java')
+    }
+}
